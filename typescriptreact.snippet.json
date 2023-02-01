@@ -1,0 +1,119 @@
+{
+  "ll": {
+    "prefix": "ll",
+    "body": ["console.log('***',$1)"]
+  },
+
+  "reactConst": {
+    "prefix": "rConst",
+    "body": ["const $1 = () => {", "return $2", "}"]
+  },
+  "reactUseEffect": {
+    "prefix": "rUseEffect",
+    "body": ["useEffect(() => {", "$1", "},[])"]
+  },
+  "reactUseAsyncEffect": {
+    "prefix": "reactUseAsyncEffect",
+    "body": [
+      "import useAsyncEffect from 'use-async-effect'",
+      "useAsyncEffect(async() => {",
+      "$1",
+      "},[])"
+    ]
+  },
+  "reactState": {
+    "prefix": "rState",
+    "body": ["const [${1} , set${1/(.*)/${1:/capitalize} /}] = useState($2)"]
+  },
+  "React component": {
+    "prefix": "rComponent",
+    "body": [
+      "/* @todo Add a description */",
+      "",
+      "interface Props {}",
+      "export default function $1(p:Props) {",
+      "  return <></>;",
+      "}",
+      ""
+    ],
+    "description": "A react functional component"
+  },
+
+  "getStaticProps": {
+    "prefix": "getStaticProps",
+    "body": [
+      "export const getStaticProps: GetStaticProps = async () => {",
+      "$1",
+      "  return {",
+      "\tprops: {",
+      "\t},",
+      "  };",
+      "}"
+    ],
+    "description": "nextjs getStaticProps"
+  },
+  "getServerProps": {
+    "prefix": "getServerSideProps",
+    "body": [
+      "export const getServerSideProps: GetServerSideProps  = async ({locale}) => {",
+      "$1",
+      "  return {",
+      "\tprops: {",
+      "...(await serverSideTranslations(locale!, ['common'])),",
+      "\t},",
+      "  };",
+      "}"
+    ],
+    "description": "nextjs getServerSideProps"
+  },
+
+  "tgetServerSideProps": {
+    "prefix": "tgetServerSideProps",
+    "body": ["InferGetServerSidePropsType<typeof getServerSideProps>"],
+    "description": "Typing for server side props page"
+  },
+  "getStaticPaths": {
+    "prefix": "getStaticPaths",
+    "body": [
+      "export const getStaticPaths: GetStaticPaths = async () => {",
+      " $1",
+      "  return { paths: [], fallback: false };",
+      "}"
+    ],
+    "description": "nextjs getServerSideProps"
+  },
+  "useSWR": {
+    "prefix": "useSWR",
+    "body": ["const { data, error } = useSWR<$1>('/$2', myFetcher);"],
+    "description": "Client side fetch hook by Nextjs, you can pass the function as reference"
+  },
+
+  "tgetStaticProps": {
+    "prefix": "tgetStaticProps",
+    "body": ["InferGetStaticPropsType<typeof getStaticProps>"],
+    "description": "Typing for server side props page"
+  },
+  "rt": {
+    "prefix": "rtranslation",
+    "body": ["const {t} = useTranslation()"],
+    "description": "I18next translation hook"
+  },
+  "rForm": {
+    "prefix": "rForm",
+    "body": [
+      "const { register, handleSubmit, getValues, formState } = useForm<ForgotPasswordFormInputs>({ mode: 'onChange' });"
+    ],
+    "description": "hook form"
+  },
+
+  "rRegister": {
+    "prefix": "rRegister",
+    "body": ["{...register('$1')}"],
+    "description": "register hook form"
+  },
+  "rFormSubmit": {
+    "prefix": "rFormSubmit",
+    "body": ["  <form onSubmit={handleSubmit($1)}>"],
+    "description": "<form> hook form"
+  }
+}
